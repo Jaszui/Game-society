@@ -1,0 +1,21 @@
+<app-header (featureSelected)="onNavigate($event)"></app-header>
+
+<section class="jumbotron text-center">
+  <div class="container">
+    <h1 class="jumbotron-heading">Game Spot Society</h1>
+    <p class="lead text-muted">Video and board game enthusiasts! Come down to SOAS games society to play a wide variety of video and board games with a great group of people</p>
+    <p>
+      <!--<a href="#" class="btn btn-primary my-2"></a>-->
+      <!--<a href="#" class="btn btn-secondary my-2"></a>-->
+    </p>
+  </div>
+</section>
+
+  <div class="row">
+    <div class="col-md-12">
+      <app-groups *ngIf="loadedFeature === 'group'"></app-groups>
+      <app-posts-list *ngIf="loadedFeature !== 'group'"></app-posts-list>
+    </div>
+  </div>
+
+

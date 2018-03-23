@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="co-xs-12" style="text-align: center">
+      <button class="btn btn-success"> Add new Group</button>
+    </div>
+</div>
+<!--center this button-->
+<hr>
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <app-groups-item *ngFor="let groupEl of groups" [group]="groupEl" (groupSelected)="onGroupSelected(groupEl)"></app-groups-item>
+    </div>
+  </div>
+</div>
+
+

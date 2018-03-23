@@ -1,0 +1,18 @@
+
+<div class="album py-5 bg-light">
+
+<div class="row">
+  <div class="col-md-5">
+<app-groups-list (groupWasSelected)="selectedGroup = $event"></app-groups-list>
+  </div>
+
+  <div class="col-md-7">
+    <app-groups-detail *ngIf="selectedGroup;else infoText" [group]="selectedGroup"></app-groups-detail>
+    <ng-template #infoText>
+      <p>Please select a group</p>
+    </ng-template>
+  </div>
+</div>
+
+</div>
+
