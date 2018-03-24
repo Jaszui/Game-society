@@ -11,11 +11,5 @@
   </div>
 </section>
 
-  <div class="row">
-    <div class="col-md-12">
-      <app-groups *ngIf="loadedFeature === 'group'"></app-groups>
-      <app-posts-list *ngIf="loadedFeature !== 'group'"></app-posts-list>
-    </div>
-  </div>
-
-
+<app-groups *ngIf="loadedFeature === 'group'"></app-groups>
+<app-posts-list *ngIf="loadedFeature !== 'group'"></app-posts-list>
