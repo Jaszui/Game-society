@@ -10,6 +10,7 @@ import { GroupsDetailComponent } from './groups/groups-detail/groups-detail.comp
 import { GroupsItemComponent } from './groups/groups-list/groups-item/groups-item.component';
 import { PostsListComponent } from './posts-list/posts-list.component';
 import { PostsEditComponent } from './posts-list/posts-edit/posts-edit.component';
+import { DropdownDirective } from './shared/dropdown.directive';
 
 
 
@@ -22,7 +23,8 @@ import { PostsEditComponent } from './posts-list/posts-edit/posts-edit.component
     GroupsDetailComponent,
     GroupsItemComponent,
     PostsListComponent,
-    PostsEditComponent
+    PostsEditComponent,
+    DropdownDirective
 
   ],
   imports: [

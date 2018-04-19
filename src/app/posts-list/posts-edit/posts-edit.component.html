@@ -1,14 +1,14 @@
 <form class="post-edit-form">
   <div class="form-group">
     <label for="title">Title</label>
-    <input type="text" class="form-control" id="title" placeholder="extra topic">
+    <input type="text" class="form-control" id="title" placeholder="extra topic" #titleInput>
   </div>
 
   <div class="form-group">
     <label for="description">Example textarea</label>
-    <textarea class="form-control" id="description" rows="3"></textarea>
+    <textarea class="form-control" id="description" rows="3" #descriptionInput></textarea>
   </div>
-  <button class="btn btn-success" type="submit">Add post</button>
+  <button class="btn btn-success" type="submit" (click)="onAddPost()">Add post</button>
   <button class="btn btn-danger" type="submit">Delete</button>
   <button class="btn btn-primary" type="submit">Clear</button>
 </form>

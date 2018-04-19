@@ -1,6 +1,6 @@
 
 <div class="container">
-  <app-posts-edit></app-posts-edit>
+  <app-posts-edit (postAdded)="onPostAdded($event)"></app-posts-edit>
   <div class="row">
     <div class="col-sm-6" *ngFor="let post of posts">
       <div class="card">
