@@ -9,10 +9,16 @@ import {GroupService} from './group.service';
   providers: [GroupService]
 })
 export class GroupsComponent implements OnInit {
-selectedGroup: Group;
-  constructor() { }
+  selectedGroup: Group;
+  constructor(private groupService: GroupService) { }
 
   ngOnInit() {
+    this.groupService.groupSelected
+      .subscribe(
+        (group: Group) => {
+          this.selectedGroup = group;
+        }
+      );
   }
 
 }

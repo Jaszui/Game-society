@@ -10,6 +10,6 @@
     </p>
   </div>
 </section>
-
-<app-groups *ngIf="loadedFeature === 'group'"></app-groups>
-<app-posts-list *ngIf="loadedFeature !== 'group'"></app-posts-list>
+<router-outlet></router-outlet>
+<!--<app-groups *ngIf="loadedFeature === 'group'"></app-groups>-->
+<!--<app-posts-list *ngIf="loadedFeature !== 'group'"></app-posts-list>-->

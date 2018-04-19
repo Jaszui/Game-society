@@ -1,5 +1,6 @@
 import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {Post} from '../post.class';
+import {PostListService} from '../post-list.service';
 
 @Component({
   selector: 'app-posts-edit',
@@ -9,8 +10,8 @@ import {Post} from '../post.class';
 export class PostsEditComponent implements OnInit {
 @ViewChild ('titleInput') titleInputRef: ElementRef;
 @ViewChild ('descriptionInput') descriptionInputRef: ElementRef;
-@Output() postAdded = new EventEmitter<Post>();
-  constructor() { }
+
+constructor(private pltService: PostListService) { }
 
   ngOnInit() {
   }
@@ -18,6 +19,6 @@ export class PostsEditComponent implements OnInit {
     const pstTitle = this.titleInputRef.nativeElement.value;
     const pstdescription = this.descriptionInputRef.nativeElement.value;
     const newPost = new Post(pstTitle, pstdescription);
-    this.postAdded.emit(newPost);
+    this.pltService.addPost(newPost);
   }
 }

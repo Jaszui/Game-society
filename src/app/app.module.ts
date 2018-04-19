@@ -11,6 +11,12 @@ import { GroupsItemComponent } from './groups/groups-list/groups-item/groups-ite
 import { PostsListComponent } from './posts-list/posts-list.component';
 import { PostsEditComponent } from './posts-list/posts-edit/posts-edit.component';
 import { DropdownDirective } from './shared/dropdown.directive';
+import {PostListService} from './posts-list/post-list.service';
+import {FormsModule} from '@angular/forms';
+import {HttpModule} from '@angular/http';
+import {HttpClientModule} from '@angular/common/http';
+import {AppRoutingModule} from './app-routing.module';
+
 
 
 
@@ -25,12 +31,15 @@ import { DropdownDirective } from './shared/dropdown.directive';
     PostsListComponent,
     PostsEditComponent,
     DropdownDirective
-
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpModule,
+    HttpClientModule,
+    FormsModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [PostListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

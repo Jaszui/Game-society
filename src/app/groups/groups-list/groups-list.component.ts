@@ -8,7 +8,7 @@ import {GroupService} from "../group.service";
   styleUrls: ['./groups-list.component.css']
 })
 export class GroupsListComponent implements OnInit {
-  @Output() groupWasSelected = new EventEmitter<Group>();
+
   groups: Group[];
 
   constructor(private groupService: GroupService) {
@@ -18,8 +18,6 @@ export class GroupsListComponent implements OnInit {
   ngOnInit() {
   this.groups = this.groupService.getGroups();
   }
-  onGroupSelected(group: Group) {
-    this.groupWasSelected.emit(group);
-  }
+
 
 }
