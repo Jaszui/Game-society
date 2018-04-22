@@ -16,6 +16,8 @@ import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
+import { GroupsStartComponent } from './groups/groups-start/groups-start.component';
+import { GroupEditComponent } from './groups/group-edit/group-edit.component';
 
 
 
@@ -30,7 +32,9 @@ import {AppRoutingModule} from './app-routing.module';
     GroupsItemComponent,
     PostsListComponent,
     PostsEditComponent,
-    DropdownDirective
+    DropdownDirective,
+    GroupsStartComponent,
+    GroupEditComponent
   ],
   imports: [
     BrowserModule,

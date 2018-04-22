@@ -20,6 +20,9 @@ export class GroupService {
     return this.groups.slice();
     // return this.groups;
   }
+  getGroup(index: number) {
+    return this.groups[index];
+  }
   addPostToPostList(posts: Post[]) {
     this.pltService.addPosts(posts);
   }

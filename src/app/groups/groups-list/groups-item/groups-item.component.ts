@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit } from '@angular/core';
 import {Group} from '../../group.class';
-import {GroupService} from "../../group.service";
+
 
 @Component({
   selector: 'app-groups-item',
@@ -9,13 +9,9 @@ import {GroupService} from "../../group.service";
 })
 export class GroupsItemComponent implements OnInit {
 @Input() group: Group;
-// To listen event from outside
+  @Input() index: number;
 
-  constructor(private groupService : GroupService) { }
+ngOnInit() {
+  }
 
-  ngOnInit() {
-  }
-  onSelected() {
-  this.groupService.groupSelected.emit(this.group);
-  }
 }
