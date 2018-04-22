@@ -6,6 +6,8 @@ import {PostsListComponent} from './posts-list/posts-list.component';
 import {GroupsStartComponent} from './groups/groups-start/groups-start.component';
 import {GroupsDetailComponent} from './groups/groups-detail/groups-detail.component';
 import {GroupEditComponent} from './groups/group-edit/group-edit.component';
+import {SignupComponent} from './auth/auth/sign-up/sign-up.component';
+import {SignInComponent} from './auth/auth/sign-in/sign-in.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/group', pathMatch: 'full'},
@@ -16,6 +18,8 @@ const appRoutes: Routes = [
     {path: ':id/edit', component: GroupEditComponent},
   ]},
   { path: 'post-list', component: PostsListComponent},
+  {path: 'signUp', component: SignupComponent},
+  {path: 'signIn', component: SignInComponent},
 ]
 
 @NgModule({

@@ -20,6 +20,9 @@ import { GroupsStartComponent } from './groups/groups-start/groups-start.compone
 import { GroupEditComponent } from './groups/group-edit/group-edit.component';
 import {GroupService} from './groups/group.service';
 import {DataStorageService} from './shared/data-storage.service';
+import { SignupComponent } from './auth/auth/sign-up/sign-up.component';
+import { SignInComponent } from './auth/auth/sign-in/sign-in.component';
+import {AuthService} from './auth/auth/auth.service';
 
 
 
@@ -36,7 +39,9 @@ import {DataStorageService} from './shared/data-storage.service';
     PostsEditComponent,
     DropdownDirective,
     GroupsStartComponent,
-    GroupEditComponent
+    GroupEditComponent,
+    SignupComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +53,8 @@ import {DataStorageService} from './shared/data-storage.service';
   ],
   providers: [PostListService,
               GroupService,
-              DataStorageService],
+              DataStorageService,
+              AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -16,7 +16,7 @@ groupChanged = new Subject<Group[]>()
         new Post('Test4', 'alalalal4')])
   ];
 
-  constructor(private pltService: PostListService){}
+  constructor(private pltService: PostListService) {}
   setGroup(groups: Group[]) {
     this.groups = groups;
     this.groupChanged.next(this.groups.slice());
