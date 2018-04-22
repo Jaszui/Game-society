@@ -9,8 +9,8 @@
   <div class="container">
     <div class="row">
       <app-groups-item class="col-md-6"
-                       *ngFor="let groupEl of groups; let i=index "
-                       [group]="groupEl"
+                       *ngFor="let group of groups; let i=index "
+                       [group]="group"
                        [index]="i">
       </app-groups-item>
     </div>

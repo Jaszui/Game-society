@@ -22,7 +22,7 @@ export class GroupsListComponent implements OnInit , OnDestroy {
     this.subscription = this.groupService.groupChanged
       .subscribe(
         (groups: Group[]) => {
-          this.groups = this.groups;
+          this.groups = groups;
     }
       )
   this.groups = this.groupService.getGroups();

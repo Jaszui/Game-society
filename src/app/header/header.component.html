@@ -15,16 +15,13 @@
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" routerLink="/post-list">Posts</a>
       </li>
-      <li class="nav-item dropdown ">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Manage
-        </a>
-        <div class="dropdown-menu show"  aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" style="cursor: pointer;" (click)="onSaveData()">Save Data</a>
-          <a class="dropdown-item" style="cursor: pointer;" (click)="setFetchData()">Fetch Data</a>
-          <!--<div class="dropdown-divider"></div>-->
-          <!--<a class="dropdown-item" href="#">Something else here</a>-->
-        </div>
+      <li class="nav-item dropdown">
+          <div class="nav-link">Manage
+            <div class="dropDownContent">
+              <a class="dropDownItem" (click)="onSaveData()">Save Dat</a>
+              <a class="dropDownItem" (click)="setFetchData()">Fetch Data</a>
+           </div>
+          </div>
       </li>
     </ul>
     <!--<form class="form-inline my-2 my-lg-0">-->
