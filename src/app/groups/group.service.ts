@@ -22,8 +22,7 @@ groupChanged = new Subject<Group[]>()
     this.groupChanged.next(this.groups.slice());
   }
   getGroups() {
-    return this.groups.slice();
-    // return this.groups;
+    return this.groups;
   }
   getGroup(index: number) {
     return this.groups[index];
@@ -33,7 +32,6 @@ groupChanged = new Subject<Group[]>()
   }
   addGroup(group: Group) {
     this.groups.push(group);
-    this.groupChanged.next(this.groups.slice());
   }
   updateGroup(index: number, newGroup: Group) {
    this.groups[index] = newGroup;

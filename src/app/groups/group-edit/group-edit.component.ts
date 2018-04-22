@@ -28,7 +28,7 @@ export class GroupEditComponent implements OnInit {
     }
       );
   }
-  onSubmiT() {
+  onSubmit() {
     // console.log(this.groupForm);
     // const newGroup = new Group(this.groupForm.value['groupTitle'],
     //  this.groupForm.value['groupDescription'],
