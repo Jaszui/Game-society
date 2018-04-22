@@ -1,9 +1,10 @@
-import {EventEmitter, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Post} from './post.class';
+import {Subject} from 'rxjs/Subject';
 
 @Injectable()
 export class PostListService {
-  postChanged = new EventEmitter<Post[]>();
+  postChanged = new Subject<Post[]>();
  private posts: Post[] = [
     new Post('Aliquam erat volutpat',
       'Aliquam erat volutpat. Vestibulum sem' +
@@ -22,13 +23,13 @@ export class PostListService {
   }
   addPost(newPost: Post) {
   this.posts.push(newPost);
-  this.postChanged.emit(this.posts.slice());
+  this.postChanged.next(this.posts.slice());
   }
   addPosts(posts: Post[]) {
     // for (let post of posts) {
     //  this.addPost(post);
    // }
     this.posts.push(...posts);
-    this.postChanged.emit(this.posts.slice());
+    this.postChanged.next(this.posts.slice());
   }
 }

@@ -1,20 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Post} from './post.class';
-import {post} from "selenium-webdriver/http";
-import {PostListService} from "./post-list.service";
+import {PostListService} from './post-list.service';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-posts-list',
   templateUrl: './posts-list.component.html',
   styleUrls: ['./posts-list.component.css']
 })
-export class PostsListComponent implements OnInit {
+export class PostsListComponent implements OnInit, OnDestroy {
 posts: Post[];
+private subscription: Subscription;
   constructor(private pltService: PostListService) { }
 
   ngOnInit() {
     this.posts = this.pltService.getPosts();
-    this.pltService.postChanged
+    this.subscription = this.pltService.postChanged
       .subscribe(
         (posts: Post[]) => {
           this.posts = posts;
@@ -22,7 +23,9 @@ posts: Post[];
       );
   }
 
-
+  ngOnDestroy() {
+  this.subscription.unsubscribe();
+  }
 }
 
 

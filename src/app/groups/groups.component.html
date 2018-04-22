@@ -1,19 +1,12 @@
 <div class="bg-light">
   <div class="album py-5 container">
-
-  <div class="row">
+    <div class="row">
     <div class="col-md-5">
       <app-groups-list ></app-groups-list>
     </div>
-
     <div class="col-md-6 offset-md-1">
-      <!--<app-groups-detail *ngIf="selectedGroup;else infoText" [group]="selectedGroup"></app-groups-detail>-->
-      <!--<ng-template #infoText>-->
-        <!--<p>Please select a group</p>-->
-      <!--</ng-template>-->
       <router-outlet></router-outlet>
     </div>
   </div>
-
   </div>
 </div>

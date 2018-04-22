@@ -1,11 +1,11 @@
-import {EventEmitter, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Group} from './group.class';
 import {Post} from '../posts-list/post.class';
 import {PostListService} from '../posts-list/post-list.service';
 
 @Injectable()
 export class GroupService {
-  groupSelected = new EventEmitter<Group>();
+
   private groups: Group[] = [
     new Group('Test1', 'test1',
       'https://www.luminate.ai/wp-content/uploads/2013/01/sample-img.png',
