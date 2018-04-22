@@ -1,3 +1,93 @@
-<p>
-  group-edit works!
-</p>
+<div class="row" xmlns="http://www.w3.org/1999/html">
+  <div class="col-md-12">
+    <form [formGroup]="groupForm" (ngSubmit)="onSubmiT()">
+      <div class="row">
+        <div class="col-xs-12">
+          <button type="submit" class="btn btn-success" [disabled]="!groupForm">Save</button>
+          <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" id="title" class="form-control" formControlName="groupTitle">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="imagePath">Img Url</label>
+            <input type="text" id="imagePath" class="form-control" formControlName="imagePath" #imagePath>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <img [src]="imagePath.value" class="img-responsive">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea type="text" id="description" class="form-control" rows="6" formControlName="groupDescription"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12" formArrayName = "posts">
+          <div
+            class="row"
+            *ngFor="let postCtrl of groupForm.get('posts').controls ; let i = index"
+            [formGroupName]="i"
+          style="margin-top: 10px">
+            <div class="col-md-8">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="title">
+            </div>
+            <div class="col-md-2">
+              <input
+                type="text"
+                class="form-control"
+                formControlName="description">
+            </div>
+            <div class="col-md-2" type="button" (click)="onDeletePost(i)">
+              <button class="btn btn-danger">X</button>
+            </div>
+          </div>
+          <hr>
+          <div class="rov">
+            <div class="col-xs-12">
+              <button type="button"
+                class="btn btn-success"
+                      (click)="onAddPost()">Add Post</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!--<div class="row">-->
+        <!--<div class="col-xs-12">-->
+          <!--<div class="row">-->
+            <!--<div class="col-xs-8">-->
+              <!--<input type="text" class="form-control">-->
+            <!--</div>-->
+            <!--<div class="col-xs-2">-->
+              <!--<input type="text" class="form-control">-->
+            <!--</div>-->
+            <!--<div class="col-xs-2">-->
+              <!--<button class="btn btn-danger">X</button>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+
+    </form>
+  </div>
+</div>

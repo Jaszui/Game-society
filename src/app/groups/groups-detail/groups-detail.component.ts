@@ -31,5 +31,9 @@ export class GroupsDetailComponent implements OnInit {
      this.router.navigate(['edit'], {relativeTo: this.route});
     // this.router.navigate(['../', this.id, 'edit'], {relativeTo: this.route});
   }
+  onDeleteGroup() {
+    this.groupService.deleteGroup(this.id);
+    this.router.navigate(['/group']);
+  }
 
 }

@@ -22,6 +22,9 @@ private subscription: Subscription;
         }
       );
   }
+  onEditPost(index: number) {
+  this.pltService.startedEditing.next(index);
+  }
 
   ngOnDestroy() {
   this.subscription.unsubscribe();

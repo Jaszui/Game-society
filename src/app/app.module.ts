@@ -12,12 +12,13 @@ import { PostsListComponent } from './posts-list/posts-list.component';
 import { PostsEditComponent } from './posts-list/posts-edit/posts-edit.component';
 import { DropdownDirective } from './shared/dropdown.directive';
 import {PostListService} from './posts-list/post-list.service';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import { GroupsStartComponent } from './groups/groups-start/groups-start.component';
 import { GroupEditComponent } from './groups/group-edit/group-edit.component';
+import {GroupService} from './groups/group.service';
 
 
 
@@ -41,9 +42,11 @@ import { GroupEditComponent } from './groups/group-edit/group-edit.component';
     HttpModule,
     HttpClientModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
-  providers: [PostListService],
+  providers: [PostListService,
+    GroupService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
