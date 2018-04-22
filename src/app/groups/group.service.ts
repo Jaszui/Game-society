@@ -17,6 +17,10 @@ groupChanged = new Subject<Group[]>()
   ];
 
   constructor(private pltService: PostListService){}
+  setGroup(groups: Group[]) {
+    this.groups = groups;
+    this.groupChanged.next(this.groups.slice());
+  }
   getGroups() {
     return this.groups.slice();
     // return this.groups;
@@ -40,6 +44,7 @@ groupChanged = new Subject<Group[]>()
     this.groups.splice(index, 1);
     this.groupChanged.next(this.groups.slice());
   }
+
 
 }
 

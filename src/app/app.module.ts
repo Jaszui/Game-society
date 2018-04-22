@@ -19,6 +19,7 @@ import {AppRoutingModule} from './app-routing.module';
 import { GroupsStartComponent } from './groups/groups-start/groups-start.component';
 import { GroupEditComponent } from './groups/group-edit/group-edit.component';
 import {GroupService} from './groups/group.service';
+import {DataStorageService} from './shared/data-storage.service';
 
 
 
@@ -46,7 +47,8 @@ import {GroupService} from './groups/group.service';
     ReactiveFormsModule
   ],
   providers: [PostListService,
-    GroupService],
+              GroupService,
+              DataStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
