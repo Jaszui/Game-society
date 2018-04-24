@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DataStorageService} from '../shared/data-storage.service';
 import {Response} from '@angular/http';
+import {AuthService} from '../auth/auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,7 @@ import {Response} from '@angular/http';
 })
 export class HeaderComponent implements OnInit {
   userIsLogged: boolean;
-  constructor(private dataStorageService: DataStorageService) { }
+  constructor(private dataStorageService: DataStorageService , private authService: AuthService) { }
 
   ngOnInit() {
     // TODO: add user controller
@@ -26,5 +27,8 @@ export class HeaderComponent implements OnInit {
   setFetchData() {
     this.dataStorageService.getGroups();
   }
+  logout() {
+    this.authService.isAuthenticated();
+}
 
 }
