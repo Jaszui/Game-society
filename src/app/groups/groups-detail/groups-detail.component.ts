@@ -20,7 +20,10 @@ export class GroupsDetailComponent implements OnInit {
         (params: Params) => {
           this.id = params['id'];
           this.group = this.groupService.getGroup(this.id);
-          // TODO: dodac komunikat, ze nie ma takiej grupy i wrocic na strone glowna np
+          if (this.group === undefined) {
+                console.log('No such group exist');
+            this.router.navigate(['/group']);
+          }
         }
       );
   }
