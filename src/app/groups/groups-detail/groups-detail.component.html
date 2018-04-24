@@ -1,38 +1,31 @@
 <div class="container">
-<div class="row">
-  <div class="col-sx-12">
-    <img  class="img-responsive"style="max-height:300px"src="{{group.imagePath}}" alt="">
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <h1>{{group.title}}</h1>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-  <div class="btn-group">
-    <!--<button type="button" class="btn btn-primary dropdown-toggle">Manage Group</button>-->
-    <!--<ul class="dropdown-menu show">-->
-      <!--<li><a (click)="onAddToPostList()" style="cursor: pointer;">Add post to Favorite</a></li>-->
-      <!--<li><a style="cursor: pointer;" (click)="onEditGroup()">Edit Group</a></li>-->
-      <!--<li><a style="cursor: pointer;" (click)="onDeleteGroup()">Delete Group</a></li>-->
-    <!--</ul>-->
-  </div>
-  </div>
-</div>
   <div class="row">
-    <div class="col-xs-12">
-     {{group.description}}
+    <div class="col-sx-12">
+      <img class="img-responsive" style="max-height:300px" src="{{group.imagePath}}" alt="">
     </div>
   </div>
   <div class="row">
     <div class="col-xs-12">
-     <ul class="list-group">
-       <li class="list-group-item" *ngFor="let post of group.posts.value">{{post.title}}</li>
-       <!-- TODO: musisz ogarnac czemu trzeba dodac value, dostajesz jakis obiekt z lista postow zamiast samej listy postow -->
-     </ul>
+      <h1>{{group.title}}</h1>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-xs-12">
+      Group description: {{group.description}}
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-xs-12">
+      <ul class="list-group">
+        <h2>Posts: </h2>
+        <span *ngIf="group.posts.value === undefined">There is no posts here yet</span>
+        <li class="list-group-item" *ngFor="let post of group.posts.value">{{post.title}}</li>
+        <!-- TODO: musisz ogarnac czemu trzeba dodac value, dostajesz jakis obiekt z lista postow zamiast samej listy postow -->
+      </ul>
     </div>
   </div>
 </div>
+
 
