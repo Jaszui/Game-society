@@ -12,6 +12,7 @@ export class GroupsItemComponent implements OnInit {
   @Input() index: number;
 
 ngOnInit() {
+
   }
 
 

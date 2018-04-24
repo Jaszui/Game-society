@@ -58,18 +58,18 @@ export class GroupEditComponent implements OnInit {
 
 
   private initForm() {
-    let groupTitle = '';
+    let title = '';
     let imagePath = '';
-    let groupDescription = '';
-    let groupPosts = new FormArray([]);
+    let description = '';
+    const groupPosts = new FormArray([]);
 
     if (this.editMode) {
       const group = this.groupService.getGroup(this.id);
-      groupTitle = group.title;
+      title = group.title;
       imagePath = group.imagePath;
-      groupDescription = group.description;
+      description = group.description;
       if (group['posts']) {
-        for (let post of group.posts) {
+        for (const post of group.posts) {
           groupPosts.push(
             new FormGroup({
               'title': new FormControl(post.title , Validators.required),
@@ -80,9 +80,9 @@ export class GroupEditComponent implements OnInit {
       }
     }
     this.groupForm = new FormGroup({
-      'groupTitle': new FormControl(groupTitle, Validators.required),
+      'title': new FormControl(title, Validators.required),
       'imagePath': new FormControl(imagePath , Validators.required),
-      'groupDescription': new FormControl(groupDescription, Validators.required),
+      'description': new FormControl(description, Validators.required),
       'posts': new FormControl(groupPosts)
     });
   }

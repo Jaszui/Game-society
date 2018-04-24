@@ -29,7 +29,8 @@
   <div class="row">
     <div class="col-xs-12">
      <ul class="list-group">
-       <li class="list-group-item" *ngFor="let post of group.posts">{{post.title}}</li>
+       <li class="list-group-item" *ngFor="let post of group.posts.value">{{post.title}}</li>
+       <!-- TODO: musisz ogarnac czemu trzeba dodac value, dostajesz jakis obiekt z lista postow zamiast samej listy postow -->
      </ul>
     </div>
   </div>
