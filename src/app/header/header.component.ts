@@ -3,6 +3,7 @@ import {DataStorageService} from '../shared/data-storage.service';
 import {Response} from '@angular/http';
 import {AuthService} from '../auth/auth/auth.service';
 
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -14,7 +15,9 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     // TODO: add user controller
-    this.userIsLogged = false;
+   if (this.authService.isAuthenticated() !== null) {
+     this.userIsLogged = true;
+   } else { (this.userIsLogged = false); }
   }
   onSaveData() {
     this.dataStorageService.storeGroup()
@@ -27,8 +30,5 @@ export class HeaderComponent implements OnInit {
   setFetchData() {
     this.dataStorageService.getGroups();
   }
-  logout() {
-    this.authService.isAuthenticated();
-}
 
 }

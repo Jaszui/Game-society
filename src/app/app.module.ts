@@ -23,6 +23,7 @@ import {DataStorageService} from './shared/data-storage.service';
 import { SignupComponent } from './auth/auth/sign-up/sign-up.component';
 import { SignInComponent } from './auth/auth/sign-in/sign-in.component';
 import {AuthService} from './auth/auth/auth.service';
+import { SignOutComponent } from './auth/auth/sign-out/sign-out.component';
 
 
 
@@ -41,7 +42,8 @@ import {AuthService} from './auth/auth/auth.service';
     GroupsStartComponent,
     GroupEditComponent,
     SignupComponent,
-    SignInComponent
+    SignInComponent,
+    SignOutComponent
   ],
   imports: [
     BrowserModule,
