@@ -22,7 +22,6 @@
         <h2>Posts: </h2>
         <span *ngIf="group.posts.value === undefined">There is no posts here yet</span>
         <li class="list-group-item" *ngFor="let post of group.posts.value">{{post.title}}</li>
-        <!-- TODO: musisz ogarnac czemu trzeba dodac value, dostajesz jakis obiekt z lista postow zamiast samej listy postow -->
       </ul>
     </div>
   </div>
