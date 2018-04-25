@@ -16,8 +16,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    debugger;
-    this.authService.token.subscribe(token => this.userIsLogged = token !== null);
+    this.authService.token.subscribe(token => this.userIsLogged = (token !== null), error => console.error(error));
   }
 
   onSaveData() {

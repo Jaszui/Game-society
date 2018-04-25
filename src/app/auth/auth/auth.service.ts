@@ -1,14 +1,14 @@
 import * as firebase from 'firebase';
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
-import {Observable} from 'rxjs/Observable';
+import {Subject} from 'rxjs/Subject';
 
 @Injectable()
 export class AuthService {
-  public token: Observable<string>;
+  public token: Subject<string>;
 
   constructor(private router: Router) {
-    this.token = new Observable();
+    this.token = new Subject();
   }
 
   signupUser(email: string, password: string) {
@@ -26,7 +26,7 @@ export class AuthService {
           this.router.navigate(['/']);
           firebase.auth().currentUser.getIdToken()
             .then(
-              (token: Observable<string>) => self.token = token
+              (token: string) => self.token.next(token), error => console.error(error)
             );
         }
       )
@@ -44,7 +44,7 @@ export class AuthService {
     const self = this;
     firebase.auth().currentUser.getIdToken()
       .then(
-        (token: Observable<string>) => self.token = token
+        (token: string) => self.token.next(token), error => console.error(error)
       );
     return this.token;
   }
