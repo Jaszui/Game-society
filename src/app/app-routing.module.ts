@@ -12,7 +12,7 @@ import {SignOutComponent} from "./auth/auth/sign-out/sign-out.component";
 import {SettingsComponent} from "./auth/settings/settings.component";
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/group', pathMatch: 'full'},
+  { path: '', redirectTo: '/signIn', pathMatch: 'full'},
   { path: 'group', component: GroupsComponent , children: [{
     path: '', component: GroupsStartComponent },
     {path: 'new', component: GroupEditComponent},
