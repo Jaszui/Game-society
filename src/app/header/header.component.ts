@@ -11,14 +11,15 @@ import {AuthService} from '../auth/auth/auth.service';
 })
 export class HeaderComponent implements OnInit {
   userIsLogged: boolean;
-  constructor(private dataStorageService: DataStorageService , private authService: AuthService) { }
+
+  constructor(private dataStorageService: DataStorageService, private authService: AuthService) {
+  }
 
   ngOnInit() {
-    // TODO: add user controller
-   if (this.authService.isAuthenticated() !== null) {
-     this.userIsLogged = true;
-   } else { (this.userIsLogged = false); }
+    debugger;
+    this.authService.token.subscribe(token => this.userIsLogged = token !== null);
   }
+
   onSaveData() {
     this.dataStorageService.storeGroup()
       .subscribe(
@@ -27,8 +28,12 @@ export class HeaderComponent implements OnInit {
         }
       );
   }
+
   setFetchData() {
     this.dataStorageService.getGroups();
   }
 
+  logout() {
+    this.authService.logout();
+  }
 }
