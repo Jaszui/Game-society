@@ -23,7 +23,7 @@ export class AuthService {
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(
         response => {
-          this.router.navigate(['/']);
+          this.router.navigate(['../group']);
           firebase.auth().currentUser.getIdToken()
             .then(
               (token: string) => self.token.next(token), error => console.error(error)

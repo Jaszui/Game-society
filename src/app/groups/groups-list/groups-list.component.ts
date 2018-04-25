@@ -23,9 +23,8 @@ export class GroupsListComponent implements OnInit , OnDestroy {
       .subscribe(
         (groups: Group[]) => {
           this.groups = groups;
-    }
-      )
-  this.groups = this.groupService.getGroups();
+        });
+    this.groups = this.groupService.getGroups();
   }
   onNewGroup() {
     this.router.navigate(['new'], {relativeTo: this.route});
