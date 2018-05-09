@@ -1,0 +1,22 @@
+.jumbotron--main {
+  background-image: url('../assets/img/jumbotron.jpg');
+  background-attachment: fixed;
+  background-size: 100%;
+  background-position: bottom;
+  position: relative;
+  .content {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+  }
+  &:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+  }
+}

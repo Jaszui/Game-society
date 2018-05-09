@@ -7,7 +7,7 @@ import 'rxjs/add/operator/takeUntil';
 @Component({
   selector: 'app-groups-list',
   templateUrl: './groups-list.component.html',
-  styleUrls: ['./groups-list.component.css']
+  styleUrls: ['./groups-list.component.scss']
 })
 export class GroupsListComponent implements OnInit , OnDestroy {
 
@@ -20,9 +20,6 @@ export class GroupsListComponent implements OnInit , OnDestroy {
     this.groupService.getGroups()
       .takeUntil(this.ngUnsubscribe)
       .subscribe(data => this.groupList = data);
-  }
-  onNewGroup() {
-    this.router.navigate(['new'], {relativeTo: this.route});
   }
   ngOnDestroy() {
     this.ngUnsubscribe.next();

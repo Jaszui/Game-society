@@ -4,7 +4,7 @@ import {Group} from '../../group';
 @Component({
   selector: 'app-groups-item',
   templateUrl: './groups-item.component.html',
-  styleUrls: ['./groups-item.component.css']
+  styleUrls: ['./groups-item.component.scss']
 })
 export class GroupsItemComponent implements OnInit {
   @Input() group: Group;

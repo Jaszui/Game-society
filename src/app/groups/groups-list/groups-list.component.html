@@ -1,11 +1,6 @@
-<div class="container">
+<div class="container groups-list">
   <div class="row">
-    <div class="col-md-3">
-      <div class="add-new-group">
-        <button class="btn btn-success" (click)="onNewGroup()"> Add new Group</button>
-      </div>
-    </div>
-    <app-groups-item class="col-md-3"
+    <app-groups-item class="col-md-3 mb-4"
                      *ngFor="let group of groupList; let i=index"
                      [group]="group"
                      [index]="i">
