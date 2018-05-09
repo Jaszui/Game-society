@@ -13,8 +13,8 @@ import {SettingsComponent} from "./auth/settings/settings.component";
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/signIn', pathMatch: 'full'},
-  { path: 'group', component: GroupsComponent , children: [{
-    path: '', component: GroupsStartComponent },
+  { path: 'group', component: GroupsComponent , children: [
+    {path: '', component: GroupsStartComponent },
     {path: 'new', component: GroupEditComponent},
     {path: ':id', component: GroupsDetailComponent},
     {path: ':id/edit', component: GroupEditComponent},

@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Group} from '../group.class';
 import {GroupService} from '../group.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Subscription} from 'rxjs/Subscription';
+import {Subject} from 'rxjs/Subject';
+import 'rxjs/add/operator/takeUntil';
 
 @Component({
   selector: 'app-groups-list',
@@ -11,26 +11,22 @@ import {Subscription} from 'rxjs/Subscription';
 })
 export class GroupsListComponent implements OnInit , OnDestroy {
 
-  groups: Group[];
-  subscription: Subscription;
+  public groupList = [];
+  private ngUnsubscribe = new Subject();
 
-  constructor(private groupService: GroupService, private router: Router, private route: ActivatedRoute) {
-
-  }
+  constructor(private groupService: GroupService, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.subscription = this.groupService.groupChanged
-      .subscribe(
-        (groups: Group[]) => {
-          this.groups = groups;
-        });
-    this.groups = this.groupService.getGroups();
+    this.groupService.getGroups()
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe(data => this.groupList = data);
   }
   onNewGroup() {
     this.router.navigate(['new'], {relativeTo: this.route});
   }
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
 }

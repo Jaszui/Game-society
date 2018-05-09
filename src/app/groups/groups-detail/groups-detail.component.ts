@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Group} from '../group.class';
+import {Group} from '../group';
 import {GroupService} from '../group.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 
@@ -9,32 +9,39 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
   styleUrls: ['./groups-detail.component.css']
 })
 export class GroupsDetailComponent implements OnInit {
- group: Group;
- id: number;
+  id: number;
+  public group = <Group>{};
 
-  constructor(private groupService: GroupService , private route: ActivatedRoute, private router: Router ) { }
+  constructor(private groupService: GroupService, private route: ActivatedRoute, private router: Router) {
+  }
 
   ngOnInit() {
     this.route.params
       .subscribe(
         (params: Params) => {
           this.id = params['id'];
-          this.group = this.groupService.getGroup(this.id);
-          if (this.group === undefined) {
-                console.log('No such group exist');
-            this.router.navigate(['/group']);
-          }
         }
       );
+
+    this.groupService.getGroup(this.id)
+      .subscribe(data => {
+        this.group = data;
+        if (this.group === undefined) {
+          console.log('No such group exist');
+          this.router.navigate(['/group']);
+        }
+      });
   }
 
   onAddToPostList() {
     this.groupService.addPostToPostList(this.group.posts);
   }
+
   onEditGroup() {
-     this.router.navigate(['edit'], {relativeTo: this.route});
+    this.router.navigate(['edit'], {relativeTo: this.route});
     // this.router.navigate(['../', this.id, 'edit'], {relativeTo: this.route});
   }
+
   onDeleteGroup() {
     this.groupService.deleteGroup(this.id);
     this.router.navigate(['/group']);

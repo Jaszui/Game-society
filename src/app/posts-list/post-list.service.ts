@@ -6,16 +6,7 @@ import {Subject} from 'rxjs/Subject';
 export class PostListService {
   postChanged = new Subject<Post[]>();
   startedEditing = new Subject<number>();
- private posts: Post[] = [
-    new Post('Aliquam erat volutpat',
-      'Aliquam erat volutpat. Vestibulum sem' +
-      ' lectus, tempus a purus sed, eleifend euismod elit.' +
-      ' Vivamus suscipit libero tortor, at convallis turpis cursus sed.'),
-    new Post('Aliquam',
-      'Aliquam erat volutpat. Vestibulum sem lectus, ' +
-      'tempus a purus sed, eleifend euismod elit. Vivamus su' +
-      'scipit libero tortor, at convallis turpis cursus sed.'),
-  ];
+  private posts = [];
   constructor() { }
 
   getPosts() {

@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {GroupService} from '../group.service';
+import {Subject} from 'rxjs/Subject';
+
 // import {Group} from '../group.class';
 
 @Component({
@@ -10,37 +12,51 @@ import {GroupService} from '../group.service';
   styleUrls: ['./group-edit.component.css']
 })
 export class GroupEditComponent implements OnInit {
- id: number;
- editMode = false;
+  id: number;
   groupForm: FormGroup;
-  constructor(private route: ActivatedRoute ,
+  editMode = false;
+  public group = {};
+  private ngUnsubscribe = new Subject();
+
+  constructor(private route: ActivatedRoute,
               private groupService: GroupService,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit() {
+
+    this.groupForm = new FormGroup({
+      'title': new FormControl('', Validators.required),
+      'imagePath': new FormControl('', Validators.required),
+      'description': new FormControl('', Validators.required),
+      'posts': new FormControl([])
+    });
+
     this.route.params
       .subscribe(
         (params: Params) => {
           this.id = +params['id'];
           this.editMode = params['id'] != null;
-          console.log(this.editMode);
-          this.initForm();
-    }
+        }
       );
+
+    this.groupService.getGroup(this.id)
+      .takeUntil(this.ngUnsubscribe)
+      .subscribe(data => {
+        this.group = data;
+        this.initForm();
+      });
   }
+
   onSubmit() {
-    // console.log(this.groupForm);
-    // const newGroup = new Group(this.groupForm.value['groupTitle'],
-    //  this.groupForm.value['groupDescription'],
-    //  this.groupForm.value['imagePath'],
-    //   this.groupForm.value['posts']);
     if (this.editMode) {
-      this.groupService.updateGroup(this.id, this.groupForm.value);
+      this.groupService.updateGroup(this.id, this.groupForm.value).subscribe(result => console.log(result));
     } else {
       this.groupService.addGroup(this.groupForm.value);
     }
-    this.onCancel();
+    //this.onCancel();
   }
+
   onAddPost() {
     (<FormArray>this.groupForm.get('posts')).push(
       new FormGroup({
@@ -49,43 +65,28 @@ export class GroupEditComponent implements OnInit {
       })
     );
   }
+
   onCancel() {
     this.router.navigate(['../'], {relativeTo: this.route});
   }
+
   onDeletePost(index: number) {
     (<FormArray>this.groupForm.get('posts')).removeAt(index);
   }
 
-
-  private initForm() {
-    let title = '';
-    let imagePath = '';
-    let description = '';
-    const groupPosts = new FormArray([]);
-
-    if (this.editMode) {
-      const group = this.groupService.getGroup(this.id);
-      title = group.title;
-      imagePath = group.imagePath;
-      description = group.description;
-      if (group['posts']) {
-        for (const post of group.posts) {
-          groupPosts.push(
-            new FormGroup({
-              'title': new FormControl(post.title , Validators.required),
-              'description': new FormControl(post.description, Validators.required)
-            })
-          );
-        }
-      }
-    }
-    this.groupForm = new FormGroup({
-      'title': new FormControl(title, Validators.required),
-      'imagePath': new FormControl(imagePath , Validators.required),
-      'description': new FormControl(description, Validators.required),
-      'posts': new FormControl(groupPosts)
-    });
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
 
+  private initForm() {
+    let group;
+    const groupPosts = new FormArray([]);
+
+    if (this.editMode) {
+      group = this.group;
+      (<FormGroup>this.groupForm).setValue(group, {onlySelf: true});
+    }
+  }
 }

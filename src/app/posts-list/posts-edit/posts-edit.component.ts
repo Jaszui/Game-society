@@ -34,8 +34,11 @@ export class PostsEditComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(form: NgForm) {
-    const value = form.value;
-    const newPost = new Post(value.title, value.description);
+    const {title, description} = form.value;
+    const newPost = <Post>{
+      title,
+      description
+    };
     if (this.editedPost) {
       this.pltService.updatePost(this.editedPosyIndex, newPost);
     } else {
