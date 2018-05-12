@@ -18,7 +18,7 @@ export class GroupService {
     return this.http.get<Group[]>('https://gamespot-6e9ad.firebaseio.com/group.json');
   }
 
-  getGroup(index: number): Observable<Group> {
+  getGroup(index: any): Observable<Group> {
     return this.http.get<Group>(`https://gamespot-6e9ad.firebaseio.com/group/${index}.json`);
   }
 
@@ -27,12 +27,11 @@ export class GroupService {
     this.pltService.addPosts(posts);
   }
 
-  addGroup(group: Group) {
-    // TODO
-    this.groups.push(group);
+  addGroup(newGroup: Group) {
+    return this.http.post<Group>(`https://gamespot-6e9ad.firebaseio.com/group.json`, newGroup);
   }
 
-  updateGroup(index: number, newGroup: Group): Observable<Group> {
+  updateGroup(index: any, newGroup: Group): Observable<Group> {
     return this.http.put<Group>(`https://gamespot-6e9ad.firebaseio.com/group/${index}.json`, newGroup);
   }
 

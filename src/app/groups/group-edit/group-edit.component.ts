@@ -3,8 +3,7 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {GroupService} from '../group.service';
 import {Subject} from 'rxjs/Subject';
-
-// import {Group} from '../group.class';
+import {Group} from '../group';
 
 @Component({
   selector: 'app-group-edit',
@@ -15,7 +14,8 @@ export class GroupEditComponent implements OnInit {
   id: number;
   groupForm: FormGroup;
   editMode = false;
-  public group = {};
+  public success = false;
+  public group = <Group>{};
   private ngUnsubscribe = new Subject();
 
   constructor(private route: ActivatedRoute,
@@ -35,7 +35,7 @@ export class GroupEditComponent implements OnInit {
     this.route.params
       .subscribe(
         (params: Params) => {
-          this.id = +params['id'];
+          this.id = params['id'];
           this.editMode = params['id'] != null;
         }
       );
@@ -50,11 +50,17 @@ export class GroupEditComponent implements OnInit {
 
   onSubmit() {
     if (this.editMode) {
-      this.groupService.updateGroup(this.id, this.groupForm.value).subscribe(result => console.log(result));
+      this.groupService.updateGroup(this.id, this.groupForm.value)
+        .subscribe(result => {
+           this.success = true;
+        });
     } else {
+      this.groupService.addGroup(this.groupForm.value)
+        .subscribe(result => {
+          this.success = true;
+        });
       this.groupService.addGroup(this.groupForm.value);
     }
-    //this.onCancel();
   }
 
   onAddPost() {

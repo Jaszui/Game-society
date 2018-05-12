@@ -1,9 +1,9 @@
 <div class="container groups-list">
   <div class="row">
     <app-groups-item class="col-md-3 mb-4"
-                     *ngFor="let group of groupList; let i=index"
-                     [group]="group"
-                     [index]="i">
+                     *ngFor="let group of groupList | mapToIterable"
+                     [group]="group.val"
+                     [index]="group.key">
     </app-groups-item>
   </div>
 </div>

@@ -25,7 +25,7 @@ import { SignInComponent } from './auth/auth/sign-in/sign-in.component';
 import {AuthService} from './auth/auth/auth.service';
 import { SignOutComponent } from './auth/auth/sign-out/sign-out.component';
 import { SettingsComponent } from './auth/settings/settings.component';
-
+import { MapToIterable } from './shared/mapToIterable.pipe';
 
 
 
@@ -45,7 +45,8 @@ import { SettingsComponent } from './auth/settings/settings.component';
     SignupComponent,
     SignInComponent,
     SignOutComponent,
-    SettingsComponent
+    SettingsComponent,
+    MapToIterable
   ],
   imports: [
     BrowserModule,

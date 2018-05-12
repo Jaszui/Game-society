@@ -1,13 +1,13 @@
 <div class="row" xmlns="http://www.w3.org/1999/html"> <!--TODO: po co tutaj ten parametr?-->
   <div class="col-md-12">
     <form [formGroup]="groupForm" (ngSubmit)="onSubmit()">
-      <div style="margin-left:34%" class="row">
-        <div class="col-xs-12">
-          <button type="submit" class="btn btn-success" [disabled]="!groupForm">Save</button>
-          <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="alert alert-success" role="alert" *ngIf="success">
+              Group updated!
+          </div>
         </div>
       </div>
-      <hr>
       <div class="row">
         <div class="col-md-12">
           <div class="form-group">
@@ -19,31 +19,34 @@
       <div class="row">
         <div class="col-md-12">
           <div class="form-group">
-            <label for="imagePath">Img Url</label>
+            <label for="imagePath">Cover Url</label>
             <input type="text" id="imagePath" class="form-control" formControlName="imagePath" #imagePath>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
-          <img [src]="imagePath.value" class="img-responsive">
+          <div class="form-group">
+            <img [src]="imagePath.value" class="img-responsive">
+          </div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
           <div class="form-group">
             <label for="description">Description</label>
-            <textarea type="text" id="description" class="form-control" rows="6" formControlName="description"></textarea>
+            <textarea type="text" id="description" class="form-control" rows="6"
+                      formControlName="description"></textarea>
           </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-12" formArrayName = "posts">
+        <div class="col-md-12" formArrayName="posts">
           <div
             class="row"
             *ngFor="let postCtrl of groupForm.get('posts').controls ; let i = index"
             [formGroupName]="i"
-          style="margin-top: 10px">
+            style="margin-top: 10px">
             <div class="col-md-8">
               <input
                 type="text"
@@ -62,33 +65,20 @@
           </div>
           <hr>
           <!--<div class="rov">-->
-            <!--<div class="col-xs-12">-->
-              <!--<button type="button"-->
-                <!--class="btn btn-success"-->
-                      <!--(click)="onAddPost()">Add Post</button>-->
-            <!--</div>-->
+          <!--<div class="col-xs-12">-->
+          <!--<button type="button"-->
+          <!--class="btn btn-success"-->
+          <!--(click)="onAddPost()">Add Post</button>-->
+          <!--</div>-->
           <!--</div>-->
         </div>
       </div>
-
-
-
-      <!--<div class="row">-->
-        <!--<div class="col-xs-12">-->
-          <!--<div class="row">-->
-            <!--<div class="col-xs-8">-->
-              <!--<input type="text" class="form-control">-->
-            <!--</div>-->
-            <!--<div class="col-xs-2">-->
-              <!--<input type="text" class="form-control">-->
-            <!--</div>-->
-            <!--<div class="col-xs-2">-->
-              <!--<button class="btn btn-danger">X</button>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-
+      <div class="row">
+        <div class="col-md-12">
+          <button type="submit" class="btn btn-success" [disabled]="!groupForm">Save</button>
+          <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+        </div>
+      </div>
     </form>
   </div>
 </div>
