@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Group} from '../group';
 import {GroupService} from '../group.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-groups-detail',
@@ -31,10 +32,6 @@ export class GroupsDetailComponent implements OnInit {
           this.router.navigate(['/group']);
         }
       });
-  }
-
-  onAddToPostList() {
-    this.groupService.addPostToPostList(this.group.posts);
   }
 
   onEditGroup() {

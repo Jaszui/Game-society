@@ -22,11 +22,6 @@ export class GroupService {
     return this.http.get<Group>(`https://gamespot-6e9ad.firebaseio.com/group/${index}.json`);
   }
 
-  addPostToPostList(posts: Post[]) {
-    // TODO
-    this.pltService.addPosts(posts);
-  }
-
   addGroup(newGroup: Group) {
     return this.http.post<Group>(`https://gamespot-6e9ad.firebaseio.com/group.json`, newGroup);
   }

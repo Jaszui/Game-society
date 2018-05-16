@@ -1,16 +1,26 @@
-
 <div class="container">
-  <!--<app-posts-edit></app-posts-edit>-->
-  <h1>My Favorite Posts</h1>
   <div class="row">
-    <div class="col-sm-6" *ngFor="let post of posts; let i=index" (click)="onEditPost(i)">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">{{post.title}}</h5>
-          <p class="card-text">{{post.description}}</p>
-          <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+    <div class="comment col-md-12" *ngFor="let post of posts | mapToIterable">
+      <p class="pull-right"><small>{{post.val.date}}</small></p>
+      <div class="d-flex">
+        <a class="comment__avatar" href="#">
+          <img src="//placehold.it/40x40">
+        </a>
+        <div class="comment__body">
+          <h4 class="media-heading user_name">{{post.val.author}}</h4>
+          {{post.val.description}}
         </div>
       </div>
     </div>
+  </div>
+  <div class="row">
+    <form [formGroup]="groupForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <textarea class="form-control" formControlName="newPostDesc"></textarea>
+      </div>
+      <div class="text-right">
+        <button class="btn btn-success">Wyślij</button>
+      </div>
+    </form>
   </div>
 </div>

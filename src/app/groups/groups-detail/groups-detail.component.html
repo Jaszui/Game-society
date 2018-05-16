@@ -1,31 +1,25 @@
-<div class="container">
+<div class="container group-details">
 
   <div class="row">
-    <div class="col-sx-12">
+    <div class="col-md-3">
       <img class="img-responsive" style="max-height:300px" src="{{group.imagePath}}" alt="">
     </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12">
-      <h1>{{group.title}}</h1>
+    <div class="col-md-9">
+      <h1 class="group-details__title">{{group.title}}</h1>
+      <div class="group-details__likes">
+        {{group.likes}}
+      </div>
+      <div class="group-details__desc">
+        <p>
+          {{group.description}}
+        </p>
+      </div>
     </div>
   </div>
   <br>
   <div class="row">
-    <div class="col-xs-12">
-      Group description: {{group.description}}
-    </div>
-  </div>
-
-  <br>
-  <div class="row">
-    <div class="col-xs-12">
-      <h2>Posts: </h2>
-      <span *ngIf="!group || group.posts === undefined">There is no posts here yet</span>
-        <ul class="list-group" *ngIf="group && group.posts">
-          <li class="list-group-item" *ngFor="let post of group.posts">{{post.title}}</li>
-        </ul>
-
+    <div class="col-md-12">
+      <app-posts-list [index]="id"></app-posts-list>
     </div>
   </div>
 </div>
