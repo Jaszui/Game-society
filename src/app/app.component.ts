@@ -5,14 +5,16 @@ import * as firebase from 'firebase';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   loadedFeature = 'group';
 
+  constructor () {
+    firebase.initializeApp({
+      apiKey: 'AIzaSyAcre5fljUX5ZSj6nrn9pB4500Qw3LWiNc',
+      authDomain: 'gamespot-6e9ad.firebaseapp.com'
+    });
+  }
   ngOnInit() {
-  firebase.initializeApp({
-    apiKey: 'AIzaSyAcre5fljUX5ZSj6nrn9pB4500Qw3LWiNc',
-    authDomain: 'gamespot-6e9ad.firebaseapp.com'
-  });
   }
   // why is unused?
   onNavigate(feature: string) {

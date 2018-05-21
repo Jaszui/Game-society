@@ -9,9 +9,13 @@ import {Router} from "@angular/router";
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
+  public message = {
+    type: '',
+    text: ''
+  };
 
 
-  constructor(private authService: AuthService,private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -19,6 +23,11 @@ export class SignInComponent implements OnInit {
   onSignin(form: NgForm) {
     const email = form.value.email;
     const password = form.value.password;
-    this.authService.signinUser(email, password);
+    this.authService.login(email, password).then(result => {
+      this.router.navigate(['../group']);
+    }, error => {
+      this.message.type = 'danger';
+      this.message.text = error.message;
+    });
   }
 }

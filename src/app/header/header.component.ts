@@ -16,7 +16,9 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authService.token.subscribe(token => this.userIsLogged = (token !== null), error => console.error(error));
+    this.authService.token.subscribe(
+      token => this.userIsLogged = (token !== null),
+      error => console.error(error));
     this.dataStorageService.getGroups();
   }
 

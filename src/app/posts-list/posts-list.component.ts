@@ -4,6 +4,8 @@ import {PostListService} from './post-list.service';
 import {Subscription} from 'rxjs/Subscription';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
+import * as firebase from 'firebase';
+import {AuthService} from '../auth/auth/auth.service';
 
 @Component({
   selector: 'app-posts-list',
@@ -17,7 +19,9 @@ export class PostsListComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   private id: string;
 
-  constructor(private postListService: PostListService, private route: ActivatedRoute) {
+  constructor(private postListService: PostListService,
+              private route: ActivatedRoute,
+              private authService: AuthService) {
     this.route.params.subscribe(params => {
       this.id = params.id;
     });
@@ -38,7 +42,7 @@ export class PostsListComponent implements OnInit, OnDestroy {
   onSubmit() {
     const index = this.id;
     const payload = <Post>{
-      author: 'Who know?',
+      author: firebase.auth().currentUser.email,
       description: this.groupForm.value.newPostDesc,
       date: (new Date()).toISOString().slice(0, 10)
     };
@@ -49,7 +53,7 @@ export class PostsListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    //this.subscription.unsubscribe();
   }
 
   /*this.posts = this.pltService.getPosts();

@@ -1,16 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {NgForm} from '@angular/forms';
 
-import { AuthService } from '../auth.service';
-import {Router} from "@angular/router";
+import {AuthService} from '../auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html'
 })
 export class SignupComponent implements OnInit {
+  public message = {
+    type: '',
+    text: ''
+  };
 
-  constructor(private authService: AuthService , private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) {
+  }
 
   ngOnInit() {
   }
@@ -18,8 +23,15 @@ export class SignupComponent implements OnInit {
   onSignup(form: NgForm) {
     const email = form.value.email;
     const password = form.value.password;
-    this.authService.signupUser(email, password);
-    this.router.navigate(['/signIn']);
+    this.authService.signUp(email, password)
+      .then(result => {
+        this.message.type = 'success';
+        this.message.text = 'Account ' + result.email + ' has been created!';
+      }, error => {
+        this.message.type = 'danger';
+        this.message.text = error.message;
+      });
+    //this.router.navigate(['/signIn']);
   }
 
 }
