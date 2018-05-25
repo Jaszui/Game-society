@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Group} from '../../group';
+import { AuthService } from '../../../auth/auth/auth.service';
 
 @Component({
   selector: 'app-groups-item',
@@ -9,12 +10,16 @@ import {Group} from '../../group';
 export class GroupsItemComponent implements OnInit {
   @Input() group: Group;
   @Input() index: number;
-
-  constructor() {
+  userIsLogged: boolean;
+  constructor(private authService: AuthService) {
 
   }
 
   ngOnInit() {
+
+    this.authService.admin.subscribe(
+      admin => this.userIsLogged = (admin !== null),
+      error => console.error(error));
 
   }
 }

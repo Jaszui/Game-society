@@ -1,4 +1,40 @@
-<p>name:{{name}}</p>
-<p>email:{{email}}</p>
-<p>uid:{{uid}}</p>
-<p>title:{{title}}</p>
+<div class="page">
+<div class="container">
+    <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success" role="alert" *ngIf="success">
+                    Profile updated!
+                </div>
+            </div>
+            </div>
+        <div class="row">
+            <div class="col-12">
+                <h1>User profile - {{email}}</h1>
+                <p>uid:{{uid}}</p>
+                <form [formGroup]="groupForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label for="emailinput">Email address</label>
+                        <input type="email" class="form-control" id="emailinput"
+                         aria-describedby="emailHelp" placeholder="Enter email"
+                         formControlName="email"
+                         >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Avatar URL</label>
+                        <input type="text" class="form-control" formControlName="photoURL">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Display Name</label>
+                        <input type="text" class="form-control" formControlName="displayName">
+                    </div>
+                    <div class="text-right">
+                        <button class="btn btn-success">Save</button>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

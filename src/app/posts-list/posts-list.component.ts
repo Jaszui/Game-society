@@ -18,6 +18,7 @@ export class PostsListComponent implements OnInit, OnDestroy {
   public posts: Post[];
   private subscription: Subscription;
   private id: string;
+  userIsLogged: boolean;
 
   constructor(private postListService: PostListService,
               private route: ActivatedRoute,
@@ -32,11 +33,16 @@ export class PostsListComponent implements OnInit, OnDestroy {
       'newPostDesc': new FormControl('', Validators.required)
     });
 
+    this.authService.token.subscribe(
+      token => this.userIsLogged = (token !== null),
+      error => console.error(error));
+
     this.postListService.getPosts(this.index).subscribe(data => {
       this.posts = data;
     });
     this.postListService.postChanged.subscribe(data => {
     });
+    this.authService.getToken();
   }
 
   onSubmit() {

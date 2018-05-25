@@ -8,7 +8,7 @@
         <button type="button" class="btn btn-sm btn-outline-secondary " [routerLink]="[index]"
                 routerLinkActive="active">View
         </button>
-        <button type="button" class="btn btn-sm btn-outline-secondary " [routerLink]="[index, 'edit']"
+        <button *ngIf="userIsLogged" type="button" class="btn btn-sm btn-outline-secondary " [routerLink]="[index, 'edit']"
                 routerLinkActive="active">Edit
         </button>
       </div>

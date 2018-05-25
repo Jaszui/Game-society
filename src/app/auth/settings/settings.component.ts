@@ -3,6 +3,8 @@ import * as firebase from 'firebase';
 // =====================
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../auth/auth.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 
 
@@ -41,20 +43,52 @@ export class SettingsComponent implements OnInit {
   name: string;
   email: string;
   uid: string;
-  constructor() { }
+  userIsLogger: boolean;
+  groupForm: FormGroup;
+  currentUser: any;
+  success = false;
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.title = 'dupa';
-    let currentUser = firebase.auth().currentUser;
-    if (currentUser != null) {
-      this.name = currentUser.displayName;
-      this.email = currentUser.email;
-      this.uid = currentUser.uid;
-    }
+    this.userIsLogger = (this.authService.token !== null)
+    this.authService.token.subscribe(
+      token => this.userIsLogger = (token !== null),
+      error => console.error(error));
 
-    console.log("Nazwa: " + this.name);
-    console.log("Email: "+ this.email);
-    console.log("Uid: " + this.uid);
-    console.log("dupa: " + this.title);
+    this.authService.user.subscribe(
+      user => {
+        this.currentUser = user
+        this.groupForm = new FormGroup({
+          'email': new FormControl(this.currentUser.email, Validators.required),
+          'photoURL': new FormControl(this.currentUser.photoURL),
+          'displayName': new FormControl(this.currentUser.displayName)
+        });
+        
+        this.authService.getToken();
+        this.title = '';
+        
+        
+        if (this.currentUser != null) {
+          this.name = this.currentUser.displayName;
+          this.email = this.currentUser.email;
+          this.uid = this.currentUser.uid;
+        }
+      },
+      error => console.error(error)); 
+
+
+
   }
+
+  onSubmit() {
+
+    this.currentUser.updateProfile(this.groupForm.value)
+      .then(() => {
+        this.success = true;
+      }).catch(error => {
+        // An error happened.
+      });
+  }
+
+
 }

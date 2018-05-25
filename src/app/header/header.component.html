@@ -9,7 +9,7 @@
         <a class="nav-link" routerLink="/group"><i class="far fa-folder-open"></i> Game Categories (Groups)</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/group/new"><i class="fa fa-plus"></i> Add new group</a>
+        <a class="nav-link" routerLink="/group/new" *ngIf="userIsLogged"><i class="fa fa-plus"></i> Add new group</a>
       </li>
     </ul>
   </div>
