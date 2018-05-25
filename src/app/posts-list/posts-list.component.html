@@ -1,26 +1,30 @@
 <div class="container">
-  <div class="row">
-    <div class="comment col-md-12" *ngFor="let post of posts | mapToIterable">
-      <p class="pull-right"><small>{{post.val.date}}</small></p>
-      <div class="d-flex">
-        <a class="comment__avatar" href="#">
-          <img src="//placehold.it/40x40">
-        </a>
-        <div class="comment__body">
-          <h4 class="media-heading user_name">{{post.val.author}}</h4>
-          {{post.val.description}}
+  <div class="comment-list">
+    <div class="row">
+      <div class="comment col-md-12" *ngFor="let post of posts | mapToIterable">
+        <p class="pull-right"><small>{{post.val.date}}</small></p>
+        <div class="d-flex align-start">
+          <a class="comment__avatar" href="#">
+            <img src="//placehold.it/40x40">
+          </a>
+          <div class="comment__body">
+            <h4 class="media-heading user_name">{{post.val.author}}</h4>
+            {{post.val.description}}
+          </div>
         </div>
       </div>
     </div>
   </div>
   <div class="row">
-    <form [formGroup]="groupForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <textarea class="form-control" formControlName="newPostDesc"></textarea>
-      </div>
-      <div class="text-right">
-        <button class="btn btn-success">Wyślij</button>
-      </div>
-    </form>
+    <div class="col-12">
+      <form [formGroup]="groupForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <textarea class="form-control" formControlName="newPostDesc" placeholder="Dodaj komentarz!"></textarea>
+        </div>
+        <div class="text-right">
+          <button class="btn btn-success">Wyślij</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>

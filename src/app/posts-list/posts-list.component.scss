@@ -1,3 +1,43 @@
 .post-edit-form {
   margin-bottom: 25px;
 }
+.comment {
+  border-radius: 5px;
+  margin: 10px 0;
+  padding: 5px 15px;
+  border:1px solid #03a6fd;
+  border-bottom-width: 2px;
+  position: relative;
+  &__body {
+    padding-left: 20px;
+  }
+  .user_name {
+    font-size: 16px;
+  }
+  .d-flex {
+    align-items: flex-start;
+  }
+  &__avatar {
+    overflow: hidden;
+    border-radius: 50%;
+  }
+  small {
+    background: #03a6fd;
+    color: #fff;
+    position: absolute;
+    left: 20px;
+    top: 0;
+    transform:translateY(-50%);
+    color: #fff;
+    border-radius: 5px;
+    padding: 2px 5px;
+  }
+}
+.comment-list {
+  max-height: 600px;
+  overflow: auto;
+  padding: 30px;
+  margin-bottom: 20px;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+}
